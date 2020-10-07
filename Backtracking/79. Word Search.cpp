@@ -27,6 +27,11 @@ find if there is "ABCDDECB", here you have to mark B and C unvisited as you coul
 /*
 BACKTRACKING
 
+Time Complexity - 
+
+
+improvement by reading other posts - instead of using visited array, you can just do board[r][c] = *(some character other than alphabet) 
+                                     and later board[r][c] = word[char_ind+1]
 */
 class Solution {
 public:
