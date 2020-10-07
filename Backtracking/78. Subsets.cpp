@@ -19,7 +19,8 @@ public:
         int x = nums[nums.size()-1];
         nums.pop_back();
         result = subsets(nums);
-        int s = result.size(); // have to store it, if you use result.size() in for loop instead then as you are adding elements to result its size will keep on increasing and then TLE/MLE
+        int s = result.size(); // have to store it, instead if you use result.size() in for loop then as you are adding elements to 
+                               // result its size will keep on increasing and then TLE/MLE
         
         //O(n*2^(n-1))
         for(int i{}; i<s; i++){
