@@ -22,3 +22,47 @@ you won't visit B([1,0]) again. May be you can mark that cell unvisited as you c
 find if there is "ABCDDECB", here you have to mark B and C unvisited as you couldn't find word in that path. Which I think can't be done or very cumbersome.
 */
 
+
+
+/*
+BACKTRACKING
+
+*/
+class Solution {
+public:
+    int arr1[4] = {1,-1,0,0};
+    int arr2[4] = {0,0, 1,-1};
+    bool exist(vector<vector<char>>& board, string word) {
+        for(int i=0; i<board.size(); ++i){
+            for(int j=0; j<board[i].size(); ++j){
+                if(board[i][j]==word[0]){
+                    int flag = 0;
+                    vector<vector<bool>> visited(board.size(), vector<bool>(board[0].size(),false) );
+                    visited[i][j] = true;
+                    backtrack(i, j, 0, board, word, visited, flag);
+                    if(flag==1)
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+    void backtrack(int i, int j, int char_ind, vector<vector<char>>& board, string word, vector<vector<bool>>& visited, int& flag){
+        if(flag == 1)
+            return;
+        if(char_ind == word.length()-1){
+            flag = 1;
+            return;
+        }
+        for(int x=0; x<=3; ++x){
+            int r = i + arr1[x];
+            int c = j + arr2[x];
+            if(r>=0 && r<board.size() && c>=0 && c<board[r].size() && board[r][c] == word[char_ind+1] && visited[r][c] == false){
+                visited[r][c] = true;
+                backtrack(r,c,char_ind+1, board, word, visited, flag);
+                visited[r][c] = false;
+            }
+            
+        }
+    }
+};
